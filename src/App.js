@@ -6,7 +6,8 @@ class App extends Component{
 constructor(){
   super();
   this.state = {
-    name:'Andre'
+    name:{firstName:'Andre', lastName:'Sebastian'},
+    company:'my company'
   }
   
 }
@@ -18,9 +19,16 @@ constructor(){
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
-            My name is {this.state.name}
+            My name is {this.state.name.firstName} {this.state.name.lastName}
           </p>
-          <button>hello my name is E</button>
+          <h3>My company is {this.state.company}</h3>
+          <button onClick={()=>
+          {
+            this.setState({name:{firstName:'George', lastName:'Modi'}, company:'IBM'});
+            console.log(this.state);
+
+          }
+        }>hello my name is E</button>
           <a
             className="App-link"
             href="https://reactjs.org"
