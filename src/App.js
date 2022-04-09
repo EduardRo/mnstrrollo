@@ -8,11 +8,15 @@ constructor(){
   this.state = {
     monsters:[
     {
+      id:0,
       name:'Hitler',
       car:'Mercedes'
     },
-    {name:'Mao', car:'Audi'},
-    {name:'Stalin',car:'Renault'}
+    {
+      id:1,
+      name:'Mao', 
+      car:'Audi'},
+    {id:2,name:'Stalin',car:'Renault'}
     ]
     
 
@@ -23,21 +27,21 @@ constructor(){
 
   render(){
     return (
-      <div className="App">
-        <h1>{
-          this.state.monsters.map((monster)=>{
-            return( <>
-            <h2>{monster.name}</h2>
-            <p>{monster.car}</p>
-            </>);
+      <div className="App" key='123'>
+        
+        {this.state.monsters.map((monster)=>{
+          return <div key={monster.id}>
+           <h1>{monster.name}</h1> 
+           <p>{monster.car}</p>
             
-            
-          })
-          
-          }</h1>
-      </div>
-    );
-  }
+            </div>;
+
+        })}
+
+
+      </div>)
+
+  };
 
 }
 
