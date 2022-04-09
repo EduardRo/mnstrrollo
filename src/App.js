@@ -24,8 +24,11 @@ constructor(){
           <h3>My company is {this.state.company}</h3>
           <button onClick={()=>
           {
-            this.setState({name:{firstName:'George', lastName:'Modi'}, company:'IBM'});
-            console.log(this.state);
+            this.setState(()=>
+            {return {name:{firstName:'George', lastName:'Modi'}, company:'IBM'};
+            
+          },()=>console.log(this.state));
+            //console.log(this.state);
 
           }
         }>hello my name is E</button>
