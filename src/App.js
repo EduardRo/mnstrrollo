@@ -7,16 +7,7 @@ constructor(){
   super();
   this.state = {
     monsters:[
-    {
-      id:0,
-      name:'Hitler',
-      car:'Mercedes'
-    },
-    {
-      id:1,
-      name:'Mao', 
-      car:'Audi'},
-    {id:2,name:'Stalin',car:'Renault'}
+   
     ]
     
 
@@ -24,15 +15,42 @@ constructor(){
   
 }
 
+componentDidMount(){
+ fetch('https://jsonplaceholder.typicode.com/users')
+.then((response)=>
+response.json())
+.then((users)=>this.setState(
+
+  ()=>{
+    return {monsters:users};
+  },
+
+   ()=>  {
+    console.log(this.state);
+  }
+))
+
+;
+
+
+}
+
+
 
   render(){
     return (
       <div className="App" key='123'>
         
-        {this.state.monsters.map((monster)=>{
-          return <div key={monster.id}>
-           <h1>{monster.name}</h1> 
-           <p>{monster.car}</p>
+        {this.state.monsters.map((data)=>{
+          return <div key={data.id}>
+           <h1>{data.name}</h1> 
+           <p>{data.email}</p>
+           <>
+           Adress:
+           <p>street: {data.address.street}, suite: {data.address.suite}</p>
+           <p>company: {data.company.name}</p>
+           </>
+          
             
             </div>;
 
