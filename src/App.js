@@ -31,7 +31,7 @@ componentDidMount(){
 
 };
 
-onSearchChanga=(event)=>{
+onSearchChange=(event)=>{
   const searchField = event.target.value.toLocaleLowerCase();
   
   this.setState(
