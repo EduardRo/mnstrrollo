@@ -6,9 +6,8 @@ class App extends Component{
 constructor(){
   super();
   this.state = {
-    monsters:[
-   
-    ]
+    monsters:[],
+    searchField:''
     
 
   };
@@ -17,50 +16,51 @@ constructor(){
 
 componentDidMount(){
  fetch('https://jsonplaceholder.typicode.com/users')
-.then((response)=>
-response.json())
-.then((users)=>this.setState(
+.then((response)=>response.json())
+.then((data)=>this.setState(
 
   ()=>{
-    return {monsters:users};
+    return {monsters:data};
   },
 
-   ()=>  {
-    console.log(this.state);
-  }
+  
 ))
 
 ;
 
 
+};
+
+onSearchChanga=(event)=>{
+  const searchField = event.target.value.toLocaleLowerCase();
+  
+  this.setState(
+  ()=>{return {searchField};},
+  
+  );
 }
 
 
-
   render(){
+    const filteredMonsters = this.state.monsters.filter((monster)=>{
+      return monster.name.toLocaleLowerCase().includes(this.state.searchField);});
+
+
     return (
       <div className="App" key='123'>
         <input className='search-box' type='search' placeholder='search monster' 
-        onChange={(event)=>{
-         const searchString = event.target.value.toLocaleLowerCase();
-         const filteredMonsters = this.state.monsters.filter((monster)=>{
-          return monster.name.toLocaleLowerCase().includes(searchString);
-         });
-         this.setState(()=>{return {monsters:filteredMonsters};}
-         );
-         
-
-        }}
+        onChange={this.onSearchChange}
         />
         
-        {this.state.monsters.map((data)=>{
-          return <div key={data.id}>
-           <h1>{data.name}</h1> 
-           <p>{data.email}</p>
+        {filteredMonsters.map((monster)=>{
+          
+          return <div key={monster.id}>
+           <h1>{monster.name}</h1> 
+           <p>{monster.email}</p>
            <div>
            Adress:
-           <p>street: {data.address.street}, suite: {data.address.suite}</p>
-           <p>company: {data.company.name}</p>
+           <p>street: {monster.address.street}, suite: {monster.address.suite}</p>
+           <p>company: {monster.company.name}</p>
            </div>
           
             
