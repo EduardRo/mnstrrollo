@@ -42,14 +42,17 @@ onSearchChanga=(event)=>{
 
 
   render(){
-    const filteredMonsters = this.state.monsters.filter((monster)=>{
-      return monster.name.toLocaleLowerCase().includes(this.state.searchField);});
+
+    const {monsters, searchField} = this.state;
+    const {onSearchChange} = this;
+    const filteredMonsters = monsters.filter((monster)=>{
+      return monster.name.toLocaleLowerCase().includes(searchField);});
 
 
     return (
       <div className="App" key='123'>
         <input className='search-box' type='search' placeholder='search monster' 
-        onChange={this.onSearchChange}
+        onChange={onSearchChange}
         />
         
         {filteredMonsters.map((monster)=>{
