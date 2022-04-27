@@ -1,4 +1,5 @@
 import {Component} from 'react';
+import CardList from './components/card-list/card-list.component';
 
 import './App.css';
 class App extends Component{
@@ -48,7 +49,7 @@ onSearchChange=(event)=>{
     const filteredMonsters = monsters.filter((monster)=>{
       return monster.name.toLocaleLowerCase().includes(searchField);});
 
-
+      console.log(filteredMonsters)  
     return (
       <div className="App" key='123'>
         <input className='search-box' type='search' placeholder='search monster' 
@@ -57,17 +58,7 @@ onSearchChange=(event)=>{
         
         {filteredMonsters.map((monster)=>{
           
-          return <div key={monster.id}>
-           <h1>{monster.name}</h1> 
-           <p>{monster.email}</p>
-           <div>
-           Adress:
-           <p>street: {monster.address.street}, suite: {monster.address.suite}</p>
-           <p>company: {monster.company.name}</p>
-           </div>
-          
-            
-            </div>;
+          return (<CardList monster={monster} key={monster.id}/>)
 
         })}
 
