@@ -5,6 +5,7 @@ class CardList extends Component{
 
 
 render(){
+    console.log('render from cardlist');
     const {monster} = this.props;
     return (<div key={monster.id+'m'}>
         <h1>{monster.name}</h1> 
