@@ -53,14 +53,17 @@ onSearchChange=(event)=>{
       console.log(filteredMonsters)  
     return (
       <div className="App" key='123'>
-        <SearchBox classname='search-box' placeholder='search monsters' onChangeHandler={this.onSearchChange}
+        <SearchBox className='monster-search-box' placeholder='search monsters' onChangeHandler={this.onSearchChange}
         />
-        
+        <div className='cards'>
         {filteredMonsters.map((monster)=>{
           
           return (<CardList monster={monster} key={monster.id}/>)
 
         })}
+
+        </div>
+        
 
 
       </div>)
