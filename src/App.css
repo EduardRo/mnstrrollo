@@ -15,5 +15,5 @@ body {
 }
 
 .cards{
-  display: inline;
+  display: flex;
 }
